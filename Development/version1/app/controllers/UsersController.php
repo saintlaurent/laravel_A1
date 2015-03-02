@@ -10,6 +10,7 @@ class UsersController extends \BaseController {
 	public function index()
 	{
 		//
+        return View::make("users/index", ['users'=>User::all()]);
 	}
 
 
@@ -21,6 +22,7 @@ class UsersController extends \BaseController {
 	public function create()
 	{
 		//
+        return View::make('users.create');
 	}
 
 
