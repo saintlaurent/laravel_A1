@@ -18,7 +18,7 @@ class CreateUsers extends Migration {
                 $newTable->string('password');
                 $newTable->string('reset_token');
                 $newTable->integer('login_attampt');
-                //$newTable->bit('activation');
+                $newTable->boolean('activation');
                 $newTable->text('to_do_list');
                 $newTable->string('href');
                 $newTable->timestamps();
