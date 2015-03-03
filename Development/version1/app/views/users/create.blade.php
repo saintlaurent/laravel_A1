@@ -17,7 +17,7 @@
                 {{$errors->first('email')}}
             @endif
         </div>
-
+        
         <div>
             {{Form::label('password', 'Password: ')}}
             {{Form::password('password')}}
@@ -37,8 +37,7 @@
                 {{$errors->first('confirm_password')}}
             @endif
         </div>
-    
-        <div>
+
             {{Form::submit('Create Account')}}
         </div>
     {{Form::close()}}
