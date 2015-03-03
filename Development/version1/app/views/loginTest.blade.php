@@ -1,10 +1,4 @@
 
-
-@extends('layouts.basic')
-
-@section('maincontent')
-    <h1>Create a New Account</h1>
-    
 <!--    <pre>{{ print_r($errors) }}</pre>-->
     
     {{Form::open()}}
@@ -29,17 +23,7 @@
         </div>
     
         <div>
-            {{Form::label('confirm_password', 'Confirm Password: ')}}
-            {{Form::password('confirm_password')}}
-            
-            <!-- print error message -->
-            @if($errors->has('confirm_password'))
-                {{$errors->first('confirm_password')}}
-            @endif
-        </div>
-    
-        <div>
-            {{Form::submit('Create Account')}}
+            {{Form::submit('Login')}}
         </div>
     {{Form::close()}}
-@stop
+

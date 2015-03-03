@@ -13,7 +13,45 @@
 
 Route::get('/', function()
 {
-	return View::make('users/create');
+    return View::make('hello');
 });
 
-Route::resource('users', 'UsersController');
+Route::get('/mailer', function()
+{
+    return View::make('mailerTester');
+});
+
+Route::group(array('before' => 'guest'), function(){
+   
+    // CSRF protection
+    Route::group(array('before' => 'csrf'), function(){
+        
+        // post
+        Route::post('/create', 'AccountController@postCreate'); 
+        Route::post('/loginTest', 'AccountController@postSignin'); 
+    });
+    
+    // get
+    Route::get('/create', array(
+        'as' => 'create-account',
+        'uses' => 'AccountController@getCreate'
+    ));
+    Route::get('/loginTest', array(
+        'as' => 'sign-in',
+        'uses' => 'AccountController@getSignin'
+    ));
+});
+
+Route::get('/account/logout', function(){
+    Auth::logout();
+    return "logout successfully";
+});
+
+Route::get('/account/activation/{token}', array(
+    'as' => 'account-activation',
+    'uses' => 'AccountController@initialActivation'
+));
+
+//Route::get('/create', function(){
+//    return View::make('users/create');
+//});
