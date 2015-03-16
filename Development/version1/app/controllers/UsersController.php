@@ -34,7 +34,17 @@ class UsersController extends \BaseController {
 	public function store()
 	{
 		//
-	}
+        $s = new User;
+        $s->email = Input::get('email');
+        $s->password = Input::get('password');
+
+
+        $s->save();
+
+        //return Redirect::to('/students');
+        return Redirect::route('hello');
+
+    }
 
 
 	/**
