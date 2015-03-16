@@ -16,11 +16,12 @@ class CreateUsers extends Migration {
                 $newTable->increments('id');
                 $newTable->string('email');
                 $newTable->string('password');
-                $newTable->string('reset_token');
-                $newTable->integer('login_attampt');
-                $newTable->boolean('activation');
-                $newTable->text('to_do_list');
-                $newTable->string('href');
+                $newTable->string('reset_token')->nullable();
+                $newTable->string('activation_token')->nullable();
+                $newTable->integer('login_attampt')->nullable();
+                $newTable->boolean('activation')->nullable();
+                $newTable->text('to_do_list')->nullable();
+                $newTable->string('href')->nullable();
                 $newTable->timestamps();
                 //$newTable->MEDIUMBLOB('image');
             });
