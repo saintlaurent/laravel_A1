@@ -20,7 +20,7 @@ class AccountController extends BaseController
         if($validator->fails())
         {
             // redirect back to create-account with error message
-            return Redirect::route('create-account')->withErrors($validator);
+            return Redirect::route('create-account')->withErrors($validator)->withInput();
         }
         else
         {
