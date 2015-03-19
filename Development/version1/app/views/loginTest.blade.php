@@ -1,7 +1,13 @@
 
 <!--    <pre>{{ print_r($errors) }}</pre>-->
     
-    {{Form::open()}}
+
+<!--    
+    When array is passed into 'open' method, Form::open(array('url' => 'PAGE_NAME')),
+    it is assumed that form is going to be posted to PAGE_NAME.
+-->
+    
+    {{Form::open(array('url' => 'secureTest'))}} 
         <div>
             {{Form::label('email', 'Email (will be your username): ')}}
             {{Form::text('email')}} 
@@ -27,3 +33,10 @@
         </div>
     {{Form::close()}}
 
+
+<?php 
+    if(isset($_GET['error']))
+    {
+        echo $_GET['error'];
+    }
+    

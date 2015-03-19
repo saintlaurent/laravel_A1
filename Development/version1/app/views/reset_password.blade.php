@@ -1,25 +1,4 @@
-
-
-@extends('layouts.basic')
-
-@section('maincontent')
-    <h1>Create a New Account</h1>
-
-
-
-    
-<!--    <pre>{{ print_r($errors) }}</pre>-->
-    
-    {{Form::open()}}
-        <div>
-            {{Form::label('email', 'Email (will be your username): ')}}
-            {{Form::text('email')}} 
-            
-            <!-- print error message -->
-            @if($errors->has('email'))
-                {{$errors->first('email')}}
-            @endif
-        </div>
+{{Form::open()}}
 
         <div>
             {{Form::label('password', 'Password: ')}}
@@ -41,7 +20,6 @@
             @endif
         </div>
 
-            {{Form::submit('Create Account')}}
+            {{Form::submit('Reset')}}
         </div>
     {{Form::close()}}
-@stop

@@ -16,6 +16,14 @@ Route::get('/', function()
     return View::make('hello');
 });
 
+Route::get('/account/activation', function(){
+    return View::make('hello');
+});
+
+Route::post('/hello', function(){
+    return View::make('hello');
+});
+
 Route::get('/mailer', function()
 {
     return View::make('mailerTester');
@@ -28,7 +36,7 @@ Route::group(array('before' => 'guest'), function(){
         
         // post
         Route::post('/create', 'AccountController@postCreate'); 
-        Route::post('/loginTest', 'AccountController@postSignin'); 
+        Route::post('/secureTest', 'AccountController@postSignin'); 
     });
     
     // get
@@ -40,6 +48,7 @@ Route::group(array('before' => 'guest'), function(){
         'as' => 'sign-in',
         'uses' => 'AccountController@getSignin'
     ));
+    
 });
 
 Route::get('/account/logout', function(){
@@ -52,6 +61,8 @@ Route::get('/account/activation/{token}', array(
     'uses' => 'AccountController@initialActivation'
 ));
 
-//Route::get('/create', function(){
-//    return View::make('users/create');
-//});
+Route::get('/secureTest', array(
+        'as' => 'authenticated-safe-zone', 
+        'uses' => 'AccountController@getSecure'
+));
+

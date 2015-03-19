@@ -33,6 +33,11 @@ class AccountController extends BaseController
             
             if($user)
             {
+                /*
+                 * Please go to Mailer.php and replace some contents with 
+                 * the actual user name and password of your email account
+                 * in order to make email function work.
+                 */ 
                 require_once('Mailer.php');
                 $mailer = new Mailer();
                 $mailer->SendMail($user->activation_token);
@@ -47,22 +52,26 @@ class AccountController extends BaseController
     
     public function initialActivation($token)
     {
+        if($token == null)
+        {
+            if($token == '')
+            {
+                return View::make('hello');
+            }
+        }
         // Verify if token is valid
-        $user = User::where('activation_token', '=', $token)->where('activation', '=', false);
+        $user = User::where('activation_token', '=', $token)->where('activation', '=', false)->first();
                 //select('SELECT activation_token FROM users WHERE activation_token = \''.$token.'\'');
-        if(count($user) > 0)
+        if($user)
         {
             // Update activation status
-            //DB::update('UPDATE users SET activation = true WHERE activation_token = \''.$token.'\'');
-            
-            $user = $user->first();
             $user->activation = true;
             $user->save();
-            return 'suceess';
+            return View::make('account_activation', array('message' => 'Account successfully activated.'));
         }
         else
         {
-            return 'failed';
+            return View::make('account_activation', array('message' => 'Account activation failed.'));
         }
     }
     
@@ -73,22 +82,63 @@ class AccountController extends BaseController
     
     public function postSignin()
     {
+        // How to implement http://laravel.com/docs/4.2/security
         $auth = Auth::attempt(
                     array(
-                        'email' => Input::get('email'),
-                        'password' => Input::get('password')
+                        'email' => Input::get('email'), // Check email
+                        'password' => Input::get('password'), // Check password
+                        'activation' => 1 // Check activation if equals to one
+//                        , true // The forth parameter is set to be remembering user
+//                        
+                        /*
+                           All parameters above on the left of => must match 
+                           column names on database table
+                        */
                     )
                 );
         
         if($auth)
         {
-            return "logged in";
+            //return "logged in";
+            return View::make('secureTest');
         }
         else
         {
             return "failed to login";
         }
-//        return $auth;
+    }
+    
+    public function getSecure()
+    {
+        if(Auth::id() == '' && Auth::user() == null)
+        {
+            return Redirect::route('sign-in', array('error' => 'You have not logged in yet'));
+        }
+        return View::make('/secureTest');
+    }
+    
+    public function getForgotPassword()
+    {
+        return View::make('forgot_password');
+    }
+    
+    public function postForgotPassword()
+    {
+        // implement send email to user's email address
+        
+        return Redirect::route('sign-in');
+    }
+    
+    public function getResetPassword($token)
+    {
+        return View::make('reset_password');
+    }
+    
+    public function postResetPassword()
+    {
+        // implement reset password function
+        
+        return Redirect::route('sign-in');
     }
             
 }
