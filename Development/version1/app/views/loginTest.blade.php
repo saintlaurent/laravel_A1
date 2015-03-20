@@ -27,7 +27,7 @@
                 {{$errors->first('password')}}
             @endif
         </div>
-        {{Form::token()}}
+    
         <div>
             {{Form::submit('Login')}}
         </div>

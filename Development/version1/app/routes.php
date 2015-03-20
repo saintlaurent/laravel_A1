@@ -51,21 +51,18 @@ Route::group(array('before' => 'guest'), function(){
     
 });
 
-Route::get('/account/logout', array('as' => 'account-logout', function(){
+Route::get('/account/logout', function(){
     Auth::logout();
     return "logout successfully";
-}));
+});
 
 Route::get('/account/activation/{token}', array(
     'as' => 'account-activation',
     'uses' => 'AccountController@initialActivation'
 ));
 
-
-    Route::get('/secureTest', array(
-        'as' => 'authenticated-safe-zone',
+Route::get('/secureTest', array(
+        'as' => 'authenticated-safe-zone', 
         'uses' => 'AccountController@getSecure'
-    ));
-
-Route::post('/profile/update/', array('as' => 'update-profile', 'uses' => 'ProfileController@updateProfile'));
+));
 

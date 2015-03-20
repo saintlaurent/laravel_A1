@@ -8,8 +8,8 @@ class Mailer
     public function SendMail($tokenMessage)
     {
         $transporter = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, 'ssl')
-        ->setUsername('catherineli808@gmail.com') // replace 'xxxxxxx' to you actual email account user name;
-        ->setPassword('Luongo01'); // replace 'yyyyyyy' to you actual email account password;
+        ->setUsername('xxxxxxx') // replace 'xxxxxxx' to you actual email account user name;
+        ->setPassword('yyyyyyy'); // replace 'yyyyyyy' to you actual email account password;
         $message = Swift_Message::newInstance($transporter);
         $message->setTo(array('laravel_A1@ssdp.com' => 'Email Confirmation'));
 
