@@ -100,7 +100,16 @@ class AccountController extends BaseController
         if($auth)
         {
             //return "logged in";
-            return View::make('secureTest');
+            $email = Input::get('email');
+            $user = User::where('email', '=', $email);
+          //  return View::make('blog')->with('posts', $posts);
+            if ($user->count()){
+
+                $user = $user->first();
+
+                return View::make('secureTest')->with('user',$user);
+            }
+           return "<p>Sorry, profile not found.</p>";
         }
         else
         {
