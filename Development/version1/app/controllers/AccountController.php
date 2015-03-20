@@ -89,7 +89,7 @@ class AccountController extends BaseController
                         'password' => Input::get('password'), // Check password
                         'activation' => 1 // Check activation if equals to one
 //                        , true // The forth parameter is set to be remembering user
-//                        
+                        
                         /*
                            All parameters above on the left of => must match 
                            column names on database table
@@ -100,16 +100,7 @@ class AccountController extends BaseController
         if($auth)
         {
             //return "logged in";
-            $email = Input::get('email');
-            $user = User::where('email', '=', $email);
-          //  return View::make('blog')->with('posts', $posts);
-            if ($user->count()){
-
-                $user = $user->first();
-
-                return View::make('secureTest')->with('user',$user);
-            }
-           return "<p>Sorry, profile not found.</p>";
+            return View::make('secureTest');
         }
         else
         {
@@ -134,20 +125,49 @@ class AccountController extends BaseController
     public function postForgotPassword()
     {
         // implement send email to user's email address
+        $user = User::where('email', '=', Input::get('email'))->first();
         
+        if($user)
+        {
+            $user->reset_token = Input::get('_token');
+            $user->save();
+            require_once('Mailer.php');
+                $mailer = new Mailer();
+                $mailer->SendMail($user->reset_token);
+        }
+
         return Redirect::route('sign-in');
     }
     
-    public function getResetPassword($token)
+    public function getResetPassword($token, $id)
     {
-        return View::make('reset_password');
+        //http://localhost:8000/account/activation/'.$tokenMessage
+
+        // Verify if token is valid
+        $user = User::where('reset_token', '=', $token)->where('id', '=', $id)->first();
+                //select('SELECT activation_token FROM users WHERE activation_token = \''.$token.'\'');
+        if($user)
+        {
+            return View::make('reset_password');
+        }
+        else
+        {
+            return View::make('hello');
+        }
     }
     
     public function postResetPassword()
     {
         // implement reset password function
-        
+        $user = User::where('email', '=', Input::get('email'))->where('reset_token', '=', Input::get('_token'))->first();
+        if($user)
+        {
+            $user->password = Hash::make(Input::get('password'));
+            $user->save();
+        }
         return Redirect::route('sign-in');
+        //return "got in";
+        //return var_dump($user->password."     ".$user->reset_token);
     }
             
 }
