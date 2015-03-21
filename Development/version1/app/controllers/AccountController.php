@@ -102,6 +102,7 @@ class AccountController extends BaseController
             //return "logged in";
             $email = Input::get('email');
             $user = User::where('email', '=', $email);
+
           //  return View::make('blog')->with('posts', $posts);
             if ($user->count()){
 

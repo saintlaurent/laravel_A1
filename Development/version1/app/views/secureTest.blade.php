@@ -1,14 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
+@extends('layouts.basic')
+@section('maincontent')
 
-<body>
-
-Welcome <?php echo $user->email?> !! <br>
+<h3>Welcome <?php echo $user->email?> !! </h3><br>
 <?php
 $email = $user->email;
+$imageData = $user->image2;
+echo '<img src="data:image/png;base64,' . base64_encode($imageData) . '" />';
+echo '';
+
+//links and shit
+$links = $user->href;
+$arrayOfLinks = (explode("|",$links));
+$counter = 0;
+
 
 ?>
 
@@ -16,24 +20,34 @@ $email = $user->email;
 {{Form::open(array('route' => array('update-profile'), 'files' => true))}}
 
 
+<input type="checkbox" name="image2" value="delete">
 
     <div class="field">
         <h3>Notes</h3>
-         <input type="text" name="notes" value="{{$user->notes}}">
+         <textarea rows="5" type="text" name="notes" value="{{$user->notes}}"></textarea>
 
     </div>
 
     <div class="field">
         <h3>Websites</h3>
-         <input type="url" name="websites"><br>
-        <input type="url" name="websites"><br>
-        <input type="url" name="websites"><br>
-        <input type="url" name="websites"><br>
+
+        <?php $urlInputs = "";
+
+        for($i = 0; $i < count($arrayOfLinks); $i++){
+            echo '<input type="url" name="websites[]" value="' .$arrayOfLinks[$i] . '"><br>';
+        }
+        for($i = 0; $i < 3; $i++){
+            echo ' <input type="url" name="websites[]"><br>';
+        }
+        ?>
     </div>
 
     <div class="field">
         <h3>Images</h3>
+
+        @if($user->number_images < 4)
         {{Form::file('image')}}
+        @endif
 
     </div>
 
@@ -45,11 +59,10 @@ $email = $user->email;
 
     </div>
     <input type="submit" value="Save">
-{{ Form::hidden('user', $user->email) }}
+{{ Form::hidden('email', $user->email) }}
 {{Form::close()}}
 
 <br>
 
 <a href="{{URL::route('account-logout')}}">Log Out</a>
-</body>
-</html>
+@stop

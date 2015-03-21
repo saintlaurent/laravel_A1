@@ -2,15 +2,22 @@
 <html>
 <head>
     <title>Create Yo' Account</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <style>
         @import url(//fonts.googleapis.com/css?family=Lato:700);
 
         body {
-            margin:0;
+            margin:2em;
             font-family:'Lato', sans-serif;
-            text-align:center;
             color: #999;
+
         }
+
+
 
         .welcome {
             width: 300px;
@@ -28,7 +35,7 @@
 
         h1 {
             font-size: 32px;
-            margin: 16px 0 0 0;
+            margin: 16px;
         }
     </style>
 </head>
