@@ -37,6 +37,8 @@ Route::group(array('before' => 'guest'), function(){
         // post
         Route::post('/create', 'AccountController@postCreate'); 
         Route::post('/secureTest', 'AccountController@postSignin'); 
+        Route::post('/forgot_password', 'AccountController@postForgotPassword');
+        
     });
     
     // get
@@ -48,24 +50,30 @@ Route::group(array('before' => 'guest'), function(){
         'as' => 'sign-in',
         'uses' => 'AccountController@getSignin'
     ));
-    
+    Route::get('/forgot_password', array(
+        'as' => 'forgot-password',
+        'uses' => 'AccountController@getForgotPassword'
+    ));
 });
 
-Route::get('/account/logout', array('as' => 'account-logout', function(){
+Route::get('/account/logout', function(){
     Auth::logout();
     return "logout successfully";
-}));
+});
+
+Route::get('/reset_password/{token}/{id}', array(
+        'as' => 'reset-password',
+        'uses' => 'AccountController@getResetPassword'
+    ));
 
 Route::get('/account/activation/{token}', array(
     'as' => 'account-activation',
     'uses' => 'AccountController@initialActivation'
 ));
 
-
-    Route::get('/secureTest', array(
-        'as' => 'authenticated-safe-zone',
+Route::get('/secureTest', array(
+        'as' => 'authenticated-safe-zone', 
         'uses' => 'AccountController@getSecure'
-    ));
+));
 
-Route::post('/profile/update/', array('as' => 'update-profile', 'uses' => 'ProfileController@updateProfile'));
-
+Route::post('/reset_password', 'AccountController@postResetPassword');
