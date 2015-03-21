@@ -100,7 +100,9 @@ class AccountController extends BaseController
         if($auth)
         {
             //return "logged in";
-            return View::make('secureTest');
+            $user = User::where('email', '=', Input::get('email'))->first();
+                
+            return View::make('secureTest')->with('user', $user);
         }
         else
         {
@@ -114,7 +116,7 @@ class AccountController extends BaseController
         {
             return Redirect::route('sign-in', array('error' => 'You have not logged in yet'));
         }
-        return View::make('/secureTest');
+        return View::make('/secureTest', array(''));
     }
     
     public function getForgotPassword()
@@ -164,6 +166,7 @@ class AccountController extends BaseController
         {
             $user->password = Hash::make(Input::get('password'));
             $user->save();
+            
         }
         return Redirect::route('sign-in');
         //return "got in";

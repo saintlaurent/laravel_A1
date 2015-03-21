@@ -13,7 +13,7 @@ $email = $user->email;
 ?>
 
 <br>
-{{Form::open(array('route' => array('update-profile'), 'files' => true))}}
+
 
 
 
@@ -45,11 +45,10 @@ $email = $user->email;
 
     </div>
     <input type="submit" value="Save">
-{{ Form::hidden('user', $user->email) }}
-{{Form::close()}}
+
 
 <br>
 
-<a href="{{URL::route('account-logout')}}">Log Out</a>
+
 </body>
 </html>
