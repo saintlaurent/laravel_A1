@@ -6,7 +6,7 @@
     When array is passed into 'open' method, Form::open(array('url' => 'PAGE_NAME')),
     it is assumed that form is going to be posted to PAGE_NAME.
 -->
-    
+  
     {{Form::open(array('url' => 'secureTest'))}} 
         <div>
             {{Form::label('email', 'Email (will be your username): ')}}
@@ -32,6 +32,10 @@
             {{Form::submit('Login')}}
         </div>
     {{Form::close()}}
+    
+    <p>Not yet a member? <a href="{{URL::route('create-account')}}">Register</a>
+    
+    </p>
 
 
 <?php 
@@ -39,4 +43,6 @@
     {
         echo $_GET['error'];
     }
+    
+    
     

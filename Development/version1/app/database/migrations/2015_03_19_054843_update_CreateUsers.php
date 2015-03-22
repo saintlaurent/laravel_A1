@@ -13,7 +13,7 @@ class UpdateCreateUsers extends Migration {
 	public function up()
 	{
             Schema::table('users', function($newColumn){
-                $newColumn -> string('remember_token')->nullable();
+                $newColumn -> string('image_types')->nullable();
             });
 	}
 

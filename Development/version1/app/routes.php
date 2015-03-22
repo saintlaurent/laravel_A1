@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -46,6 +46,10 @@ Route::group(array('before' => 'guest'), function(){
         'as' => 'create-account',
         'uses' => 'AccountController@getCreate'
     ));
+    Route::get('/secureTest', array(
+        'as' => 'get-secure',
+        'uses' => 'AccountController@getSecure'
+    )); 
     Route::get('/loginTest', array(
         'as' => 'sign-in',
         'uses' => 'AccountController@getSignin'
@@ -56,10 +60,13 @@ Route::group(array('before' => 'guest'), function(){
     ));
 });
 
-Route::get('/account/logout', function(){
+Route::get('/account/logout', array(
+    'as' => 'account-logout',
+    function(){
     Auth::logout();
-    return "logout successfully";
-});
+    session_destroy();
+    return Redirect::route('sign-in');
+}));
 
 Route::get('/reset_password/{token}/{id}', array(
         'as' => 'reset-password',
@@ -77,3 +84,8 @@ Route::get('/secureTest', array(
 ));
 
 Route::post('/reset_password', 'AccountController@postResetPassword');
+
+Route::post('/profile/update/', array(
+    'as' => 'update-profile',
+    'uses' => 'ProfileController@updateProfile'
+));
