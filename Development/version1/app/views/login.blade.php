@@ -37,7 +37,7 @@
     
     </p>
 
-   
+    <p><a href="{{URL::route('forgot-password')}}">Forgot Password</a></p>
     <a href="{{URL::route('account-logout')}}">Logout</a>
     
 <?php 

@@ -50,7 +50,7 @@ Route::group(array('before' => 'guest'), function(){
 //        'as' => 'get-secure',
 //        'uses' => 'AccountController@getSecure'
 //    )); 
-//    Route::get('/loginTest', array(
+//    Route::get('/login', array(
 //        'as' => 'sign-in',
 //        'uses' => 'AccountController@getSignin'
 //    ));
@@ -69,7 +69,7 @@ Route::group(array('before' => 'guest'), function(){
         'as' => 'get-secure',
         'uses' => 'AccountController@getSecure'
     )); 
-    Route::get('/loginTest', array(
+    Route::get('/login', array(
         'as' => 'sign-in',
         'uses' => 'AccountController@getSignin'
     ));

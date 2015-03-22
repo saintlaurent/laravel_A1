@@ -22,8 +22,16 @@ class CreateUsers extends Migration {
                 $newTable->boolean('activation')->nullable();
                 $newTable->text('to_do_list')->nullable();
                 $newTable->string('href')->nullable();
+                $newTable->string('remember_token')->nullable();
+                $newTable->string('image_types')->nullable();
+                $newTable->binary('image1')->nullable();
+                $newTable->binary('image2')->nullable();
+                $newTable->binary('image3')->nullable();
+                $newTable->binary('image4')->nullable();
+                $newTable->integer('number_images')->nullable();
+                $newTable->text('notes')->nullable();
                 $newTable->timestamps();
-                //$newTable->MEDIUMBLOB('image');
+         
             });
 	}
 

@@ -8,20 +8,22 @@ class Mailer
     public function SendMail($tokenMessage)
     {
         $transporter = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, 'ssl')
-        ->setUsername('catherineli808@gmail.com') // replace 'xxxxxxx' to you actual email account user name;
-        ->setPassword('Luongo01'); // replace 'yyyyyyy' to you actual email account password;
+        //$transporter = Swift_SmtpTransport::newInstance('mail.codingarsenal.com', 25)
+        ->setUsername('xxxxxxx') // replace 'xxxxxxx' to you actual email account user name;
+        ->setPassword('yyyyyyy'); // replace 'yyyyyyy' to you actual email account password;
         $message = Swift_Message::newInstance($transporter);
-        $message->setTo(array('laravel_A1@ssdp.com' => 'Email Confirmation'));
+        $message->setTo(array('lawrence.lao26@gmail.com' => 'Email Confirmation'));
 
         $message->setSubject('This email is sent using Swift Mailer');
-        $messageBody = '<a href=http://localhost:8000/account/activation/'.$tokenMessage.'>Click here for activation</a>';
+        $messageBody = '<a href="http://demoblogbylaravel.codingarsenal.com/'.$tokenMessage.'">Click here for activation</a>';
         $message->setBody($messageBody);
-        $message->setFrom('donaldtomato@hotmail.com', 'myself');
+        $message->setFrom('laravel_A1@ssdp.com', 'myself');
 
         $mailer = Swift_Mailer::newInstance($transporter);
         try
         {
             $mailer->send($message);
+            //die('sent');
         }
         catch(Exception $e)
         {

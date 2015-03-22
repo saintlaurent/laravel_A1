@@ -47,8 +47,12 @@ class AccountController extends BaseController
                  */ 
                 require_once('Mailer.php');
                 $mailer = new Mailer();
-                $mailer->SendMail($user->activation_token);
-                return Input::all();
+                $mailer->SendMail('account/activation/'.$user->activation_token);
+                //return Input::all();
+                $message = 'Activation email has been sent. Please confirm and login.';
+                return View::make('login', array(
+                    'message' => $message
+                ));
             }
             else
             {
@@ -74,11 +78,11 @@ class AccountController extends BaseController
             // Update activation status
             $user->activation = true;
             $user->save();
-            return View::make('account_activation', array('message' => 'Account successfully activated.'));
+            return View::make('login', array('message' => 'Account successfully activated.'));
         }
         else
         {
-            return View::make('account_activation', array('message' => 'Account activation failed.'));
+            return View::make('login', array('message' => 'Account activation failed.'));
         }
     }
     
@@ -86,11 +90,10 @@ class AccountController extends BaseController
     {
         if(Auth::id() == '' && Auth::user() == null)
         {
-            return View::make('loginTest');
+            return View::make('login');
         }
         $message = 'You have already logged in previously. Please log out now and log back in again.';
-        return View::make('loginTest', array(
-            
+        return View::make('login', array(
             'message' => $message
         ));
         
@@ -122,7 +125,10 @@ class AccountController extends BaseController
         }
         else
         {
-            return "failed to login";
+            $message = 'Your account has not yet been activated.';
+            return View::make('login', array(
+                'message' => $message
+            ));
         }
     }
     
@@ -151,7 +157,7 @@ class AccountController extends BaseController
             $user->save();
             require_once('Mailer.php');
                 $mailer = new Mailer();
-                $mailer->SendMail($user->reset_token);
+                $mailer->SendMail('reset_password/'.$user->reset_token.'/'.$user->id);
         }
 
         return Redirect::route('sign-in');
