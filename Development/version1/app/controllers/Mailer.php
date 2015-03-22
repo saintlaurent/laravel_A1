@@ -9,10 +9,10 @@ class Mailer
     {
         $transporter = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, 'ssl')
         //$transporter = Swift_SmtpTransport::newInstance('mail.codingarsenal.com', 25)
-        ->setUsername('xxxxxxx') // replace 'xxxxxxx' to you actual email account user name;
-        ->setPassword('yyyyyyy'); // replace 'yyyyyyy' to you actual email account password;
+        ->setUsername('portfoliorepo.lawrence@gmail.com') // replace 'xxxxxxx' to you actual email account user name;
+        ->setPassword('myrepo.com'); // replace 'yyyyyyy' to you actual email account password;
         $message = Swift_Message::newInstance($transporter);
-        $message->setTo(array('lawrence.lao26@gmail.com' => 'Email Confirmation'));
+        $message->setTo(array('portfoliorepo.lawrence@gmail.com' => 'Email Confirmation'));
 
         $message->setSubject('This email is sent using Swift Mailer');
         $messageBody = '<a href="http://demoblogbylaravel.codingarsenal.com/'.$tokenMessage.'">Click here for activation</a>';
@@ -27,11 +27,8 @@ class Mailer
         }
         catch(Exception $e)
         {
-            echo $e->getMessage();
+            //echo $e->getMessage();
         }
-
-
-        echo 'arraived';
     }
 }
 

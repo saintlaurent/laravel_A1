@@ -1,26 +1,9 @@
+{{Form::open(array('route' => 'reset-password-post'))}}
 
-
-@extends('layouts.basic')
-
-@section('maincontent')
-    <h1>Create a New Account</h1>
-
-
-
-    
-<!--    <pre>{{ print_r($errors) }}</pre>-->
-    
-    {{Form::open()}}
         <div>
             {{Form::label('email', 'Email (will be your username): ')}}
             {{Form::text('email')}} 
-            
-            <!-- print error message -->
-            @if($errors->has('email'))
-                {{$errors->first('email')}}
-            @endif
         </div>
-
         <div>
             {{Form::label('password', 'Password: ')}}
             {{Form::password('password')}}
@@ -40,13 +23,7 @@
                 {{$errors->first('confirm_password')}}
             @endif
         </div>
-    <div>
-        <script src="https://www.google.com/recaptcha/api.js"></script>
-        
-        
-    </div>
-    <div>
-        {{Form::submit('Create Account')}}
-    </div>
+
+            {{Form::submit('Reset')}}
+        </div>
     {{Form::close()}}
-@stop

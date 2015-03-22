@@ -125,7 +125,7 @@ class AccountController extends BaseController
         }
         else
         {
-            $message = 'Your account has not yet been activated.';
+            $message = 'Login failed.';
             return View::make('login', array(
                 'message' => $message
             ));

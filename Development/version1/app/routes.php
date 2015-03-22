@@ -38,7 +38,10 @@ Route::group(array('before' => 'guest'), function(){
         Route::post('/create', 'AccountController@postCreate'); 
         Route::post('/secureTest', 'AccountController@postSignin'); 
         Route::post('/forgot_password', 'AccountController@postForgotPassword');
-        
+        Route::post('/reset_password', array(
+            'as' => 'reset-password-post',
+            'uses' => 'AccountController@postForgotPassword'
+        ));
     });
     
 //    // get
