@@ -37,12 +37,19 @@
     
     </p>
 
-
+   
+    <a href="{{URL::route('account-logout')}}">Logout</a>
+    
 <?php 
     if(isset($_GET['error']))
     {
         echo $_GET['error'];
+        unset($_GET['error']);
     }
     
+    if(isset($message))
+    {
+        echo $message;
+    }
     
     

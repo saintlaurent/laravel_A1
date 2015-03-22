@@ -41,7 +41,26 @@ Route::group(array('before' => 'guest'), function(){
         
     });
     
-    // get
+//    // get
+//    Route::get('/create', array(
+//        'as' => 'create-account',
+//        'uses' => 'AccountController@getCreate'
+//    ));
+//    Route::get('/secureTest', array(
+//        'as' => 'get-secure',
+//        'uses' => 'AccountController@getSecure'
+//    )); 
+//    Route::get('/loginTest', array(
+//        'as' => 'sign-in',
+//        'uses' => 'AccountController@getSignin'
+//    ));
+//    Route::get('/forgot_password', array(
+//        'as' => 'forgot-password',
+//        'uses' => 'AccountController@getForgotPassword'
+//    ));
+});
+
+// get
     Route::get('/create', array(
         'as' => 'create-account',
         'uses' => 'AccountController@getCreate'
@@ -58,7 +77,6 @@ Route::group(array('before' => 'guest'), function(){
         'as' => 'forgot-password',
         'uses' => 'AccountController@getForgotPassword'
     ));
-});
 
 Route::get('/account/logout', array(
     'as' => 'account-logout',

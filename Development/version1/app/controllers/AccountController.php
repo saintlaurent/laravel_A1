@@ -4,7 +4,13 @@ class AccountController extends BaseController
 {
     public function getCreate()
     {
-        return View::make('users/create');
+        if(Auth::id() == '' && Auth::user() == null)
+        {
+            return View::make('users/create'); 
+        }
+        $message = 'Please sign out before creating a new account.';
+        return View::make('hello')->with('message', $message);
+
     }
     
     public function postCreate()
@@ -78,7 +84,16 @@ class AccountController extends BaseController
     
     public function getSignin()
     {
-        return View::make('loginTest');
+        if(Auth::id() == '' && Auth::user() == null)
+        {
+            return View::make('loginTest');
+        }
+        $message = 'You have already logged in previously. Please log out now and log back in again.';
+        return View::make('loginTest', array(
+            
+            'message' => $message
+        ));
+        
     }
     
     public function postSignin()
