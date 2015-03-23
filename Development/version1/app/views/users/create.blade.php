@@ -43,6 +43,17 @@
     <div>
         <script src="https://www.google.com/recaptcha/api.js"></script>
         
+        <?php
+
+        $content = "";
+
+        $content .= '<p>' . HTML::image(Captcha::img(), 'Captcha image') . '</p>';
+        $content .= '<p>' . Form::text('captcha') . '</p>';
+        echo $content;
+        ?>
+        @if($errors->has('captcha'))
+        {{$errors->first('captcha')}}
+        @endif
         
     </div>
     <div>

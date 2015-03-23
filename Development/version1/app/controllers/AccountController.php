@@ -20,7 +20,8 @@ class AccountController extends BaseController
                 array(
                     'email' => 'required|unique:users|max:50|email',
                     'password' => 'required|min:6|max:30',
-                    'confirm_password' => 'required|same:password'
+                    'confirm_password' => 'required|same:password',
+                    'captcha' => array('required', 'captcha')
                     )
                 );
         
