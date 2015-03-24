@@ -5,18 +5,18 @@ require_once 'vendor/swiftmailer/swiftmailer/lib/swift_required.php';
 
 class Mailer
 {
-    public function SendMail($tokenMessage)
+    public function SendMail($tokenMessage, $toEmailAddress)
     {
         $transporter = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, 'ssl')
         //$transporter = Swift_SmtpTransport::newInstance('mail.codingarsenal.com', 25)
         ->setUsername('portfoliorepo.lawrence@gmail.com') // replace 'xxxxxxx' to you actual email account user name;
         ->setPassword('myrepo.com'); // replace 'yyyyyyy' to you actual email account password;
         $message = Swift_Message::newInstance($transporter);
-        $message->setTo(array('portfoliorepo.lawrence@gmail.com' => 'Email Confirmation'));
+        $message->setTo(array($toEmailAddress => 'Email Confirmation'));
 
         $message->setSubject('This email is sent using Swift Mailer');
         $messageBody = '<a href="http://localhost:8000/'.$tokenMessage.'">Click here for activation</a>';
-        $message->setBody($messageBody);
+        $message->setBody($messageBody, 'text/html');
         $message->setFrom('laravel_A1@ssdp.com', 'myself');
 
         $mailer = Swift_Mailer::newInstance($transporter);

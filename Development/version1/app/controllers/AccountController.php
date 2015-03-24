@@ -48,7 +48,7 @@ class AccountController extends BaseController
                  */ 
                 require_once('Mailer.php');
                 $mailer = new Mailer();
-                $mailer->SendMail('account/activation/'.$user->activation_token);
+                $mailer->SendMail('account/activation/'.$user->activation_token, $user->email);
                 //return Input::all();
                 $message = 'Activation email has been sent. Please confirm and login.';
                 return View::make('login', array(
@@ -158,7 +158,7 @@ class AccountController extends BaseController
             $user->save();
             require_once('Mailer.php');
                 $mailer = new Mailer();
-                $mailer->SendMail('reset_password/'.$user->reset_token.'/'.$user->id);
+                $mailer->SendMail('reset_password/'.$user->reset_token.'/'.$user->id, $user->email);
         }
 
         return Redirect::route('sign-in');
