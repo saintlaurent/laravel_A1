@@ -54,7 +54,7 @@ class AccountController extends BaseController
                 return View::make('login', array(
                     'message' => $message
                 ));
-            }
+            } 
             else
             {
                 return 'Insert failed';
