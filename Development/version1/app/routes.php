@@ -110,3 +110,4 @@ Route::post('/profile/update/', array(
     'as' => 'update-profile',
     'uses' => 'ProfileController@updateProfile'
 ));
+

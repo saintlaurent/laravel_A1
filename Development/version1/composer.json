@@ -7,8 +7,10 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"braunson/laravel-html5-forms": "dev-master",
-		"swiftmailer/swiftmailer": "@stable"
+		"swiftmailer/swiftmailer": "@stable",
+                "mews/captcha": "1.0.*"
 	},
+	
 	"autoload": {
 		"classmap": [
 			"app/commands",
@@ -19,6 +21,12 @@
 			"app/tests/TestCase.php"
 		]
 	},
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/mauris/captcha"
+        }
+    ],
 	"scripts": {
 		"post-install-cmd": [
 			"php artisan clear-compiled",
@@ -35,5 +43,5 @@
 	"config": {
 		"preferred-install": "dist"
 	},
-	"minimum-stability": "stable"
+	"minimum-stability": "dev"
 }

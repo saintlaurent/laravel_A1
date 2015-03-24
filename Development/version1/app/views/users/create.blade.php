@@ -44,16 +44,31 @@
         <script src="https://www.google.com/recaptcha/api.js"></script>
         
         <?php
-
-        $content = "";
-
-        $content .= '<p>' . HTML::image(Captcha::img(), 'Captcha image') . '</p>';
-        $content .= '<p>' . Form::text('captcha') . '</p>';
-        echo $content;
-        ?>
-        @if($errors->has('captcha'))
-        {{$errors->first('captcha')}}
-        @endif
+//            
+//            //include("../FORGOT_PASS/captcha/simple-php-captcha.php");
+//            //include('../version1/app/models/captcha/simple-php-captcha.php');
+//            include('../version1/app/models/captcha/simple-php-captcha.php');
+//            //require_once __DIR__.'/../models/captcha/simple-php-captcha.php';
+//            $_SESSION['captcha'] = simple_php_captcha(array(
+//                'min_length' => 5,
+//                'max_length' => 5,
+//                'backgrounds' => array('../backgrounds/45-degree-fabric.png'),
+//                'fonts' => array('../fonts/times_new_yorker.ttf'),
+//                'characters' => 'ABCDEFGHJKLMNPRSTUVWXYZabcdefghjkmnprstuvwxyz23456789',
+//                'min_font_size' => 28,
+//                'max_font_size' => 28,
+//                'color' => '#666',
+//                'angle_min' => 0,
+//                'angle_max' => 10,
+//                'shadow' => true,
+//                'shadow_color' => '#fff',
+//                'shadow_offset_x' => -1,
+//                'shadow_offset_y' => 1    
+//            ));
+//            echo '<img src="'.$_SESSION['captcha']['image_src'].'" />';
+//            die(var_dump(simple_php_captcha()));
+//        ?>
+       
         
     </div>
     <div>

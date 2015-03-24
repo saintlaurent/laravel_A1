@@ -106,7 +106,8 @@ $counter = 0;
 
     <div class="field">
        <h3> To Do List</h3>
-        <input type="text" name="to-do-list" value="{{$user->to_do_list}}">
+       <textarea rows="5" type="text" name="to-do-list">{{$user->to_do_list}}</textarea>
+       
 
     </div>
     <input type="submit" value="UPDATE">

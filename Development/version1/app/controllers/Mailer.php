@@ -15,7 +15,7 @@ class Mailer
         $message->setTo(array('portfoliorepo.lawrence@gmail.com' => 'Email Confirmation'));
 
         $message->setSubject('This email is sent using Swift Mailer');
-        $messageBody = '<a href="http://demoblogbylaravel.codingarsenal.com/'.$tokenMessage.'">Click here for activation</a>';
+        $messageBody = '<a href="http://localhost:8000/'.$tokenMessage.'">Click here for activation</a>';
         $message->setBody($messageBody);
         $message->setFrom('laravel_A1@ssdp.com', 'myself');
 
@@ -28,6 +28,7 @@ class Mailer
         catch(Exception $e)
         {
             //echo $e->getMessage();
+            die($e->getMessage());
         }
     }
 }
