@@ -3,10 +3,8 @@
 <head>
     <title>Create Yo' Account</title>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{{URL::asset('css/bootstrap.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{URL::asset('css/custom.css')}}" type="text/css">
     <style>
         @import url(//fonts.googleapis.com/css?family=Lato:700);
 
@@ -40,6 +38,9 @@
     </style>
 </head>
 <body>
-    @yield ('maincontent')
+    <div class="container">
+        @yield ('maincontent')
+    </div>
+    
 </body>
 </html>

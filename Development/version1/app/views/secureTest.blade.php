@@ -1,4 +1,5 @@
-
+<link rel="stylesheet" href="{{URL::asset('css/bootstrap.css')}}" type="text/css">
+<link rel="stylesheet" href="{{URL::asset('css/custom.css')}}" type="text/css">
 
 @extends('layouts.basic')
 @section('maincontent')
@@ -28,37 +29,37 @@ else
 
 
 
-
+echo "<div class='row'>";
 if($user->image1 !== null)
 {
-    echo '<img src="data:image/'.$fileTypeList[0].';base64,' . base64_encode($user->image1) . '" />';
-    echo '<input type="checkbox" name="image1" value="delete1"> Delete Image';
+    echo '<div class="photo-holder col-lg-3"><img src="data:image/'.$fileTypeList[0].';base64,' . base64_encode($user->image1) . '" />';
+    echo '<input type="checkbox" name="image1" value="delete1"> Delete Image</div>';
 }
 
 
 if($user->image2 !== null)
 {
-    echo '<img src="data:image/'.$fileTypeList[1].';base64,' . base64_encode($user->image2) . '" />';
-    echo '<input type="checkbox" name="image2" value="delete2">Delete Image'; 
+    echo '<div class="photo-holder col-lg-3"><img src="data:image/'.$fileTypeList[1].';base64,' . base64_encode($user->image2) . '" />';
+    echo '<input type="checkbox" name="image2" value="delete2">Delete Image</div>'; 
 }
 
 
 
 if($user->image3 !== null)
 {
-    echo '<img src="data:image/'.$fileTypeList[2].';base64,' . base64_encode($user->image3) . '" />';
-    echo '<input type="checkbox" name="image3" value="delete3">Delete Image';
+    echo '<div class="photo-holder col-lg-3"><img src="data:image/'.$fileTypeList[2].';base64,' . base64_encode($user->image3) . '" />';
+    echo '<input type="checkbox" name="image3" value="delete3">Delete Image</div>';
 }
 //
 //die('passed');  
 
 if($user->image4 !== null)
 {
-    echo '<img src="data:image/'.$fileTypeList[3].';base64,' . base64_encode($user->image4) . '" />';
-    echo '<input type="checkbox" name="image4" value="delete4">Delete Image';
+    echo '<div class="photo-holder col-lg-3"><img src="data:image/'.$fileTypeList[3].';base64,' . base64_encode($user->image4) . '" />';
+    echo '<input type="checkbox" name="image4" value="delete4">Delete Image</div>';
 }
     
-  
+echo "</div>";
     
   
 
@@ -72,14 +73,16 @@ $counter = 0;
 
 <br>
 
+<div class="row">
+    
 
-    <div class="field">
+    <div class="field col-lg-3">
         <h3>Notes</h3>
-        <textarea rows="5" type="text" name="notes">{{$user->notes}}</textarea>
+        <textarea rows="6"  name="notes">{{$user->notes}}</textarea>
         
     </div>
 
-    <div class="field">
+    <div class="field  col-lg-3">
         <h3>Websites</h3>
 
         <?php $urlInputs = "";
@@ -93,7 +96,7 @@ $counter = 0;
         ?>
     </div>
 
-    <div class="field">
+    <div class="field  col-lg-3">
         <h3>Images</h3>
 
         @if($user->number_images < 4)
@@ -104,15 +107,20 @@ $counter = 0;
 
 
 
-    <div class="field">
+    <div class="field  col-lg-3">
        <h3> To Do List</h3>
-       <textarea rows="5" type="text" name="to-do-list">{{$user->to_do_list}}</textarea>
+       <textarea rows="6" name="to-do-list">{{$user->to_do_list}}</textarea>
        
 
     </div>
-    <input type="submit" value="UPDATE">
+    
+    <div class="row">
+        <input class="btn btn-primary" type="submit" value="UPDATE">
+    </div>
 {{ Form::hidden('email', $user->email) }}
 {{Form::close()}}
+</div>
+
 
 <br>
 
